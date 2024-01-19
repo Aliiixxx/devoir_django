@@ -1,0 +1,54 @@
+1. Étude et correctifs du code fourni :
+1.1. Correction de l'indentation :
+L'indentation du code Python est cruciale pour le bon fonctionnement du programme. J'ai corrigé l'indentation du code fourni pour qu'il soit valide.
+1.2. Import des modules Django :
+J'ai ajouté les imports nécessaires pour les modules Django, car il semble que le code utilise Django pour gérer les vues et les modèles.
+1.3. Gestion des classes et des modèles Django :
+J'ai identifié les classes qui devraient être des modèles Django et les ai déplacées vers le fichier models.py pour une gestion plus propre des données.
+J'ai également ajouté des relations entre les modèles, comme la relation entre Utilisateur et Emprunteur.
+1.4. Fonctions et vues Django :
+J'ai créé des vues Django pour gérer les interactions avec l'application, comme index_emprunteur, emprunter_media, rendre_media, etc.
+J'ai ajouté des fonctionnalités pour interagir avec les modèles Django, comme ajouter un membre, afficher la liste des membres, ajouter un média, afficher la liste des médias, etc.
+1.5. Gestion des templates :
+J'ai créé des fichiers de templates HTML pour chaque vue Django pour rendre l'interface utilisateur conviviale.
+2. Mise en place des fonctionnalités demandées :
+2.1. Gestion des membres :
+Les utilisateurs peuvent être ajoutés en tant que membres de la bibliothèque.
+Les membres peuvent être affichés, mis à jour (changement de nom), et supprimés.
+2.2. Gestion des médias :
+Les médias (livres, DVD, CD, jeux de plateau) peuvent être ajoutés à la bibliothèque.
+Les médias peuvent être affichés et empruntés par les utilisateurs.
+Les médias empruntés peuvent être rendus.
+2.3. Restrictions d'emprunt :
+Les membres peuvent emprunter jusqu'à 3 articles.
+Les jeux de plateaux ne peuvent pas être empruntés.
+2.4. Gestion des emprunts :
+L'application suit la date d'emprunt et bloque les membres avec des emprunts en retard de plus de 7 jours.
+3. Stratégie de tests :
+J'ai ajouté un fichier de test (test.py) pour tester les fonctionnalités principales de l'application.
+Les tests comprennent la création d'une bibliothèque, d'utilisateurs, de médias, l'emprunt et le retour de médias, la gestion des membres, etc.
+J'ai utilisé la bibliothèque unittest de Python pour écrire des tests automatisés.
+4. Base de données avec des données de test :
+J'ai créé une base de données SQLite intégrée à l'application Django.
+J'ai ajouté des données de test dans le fichier manage.py, notamment une bibliothèque, des membres et des médias.
+5. Instructions pour exécuter le programme :
+Pour exécuter le programme depuis n'importe quelle machine, suivez ces étapes :
+
+Assurez-vous d'avoir Python et Django installés sur votre machine.
+
+Clonez le répertoire du projet depuis un dépôt Git ou téléchargez-le depuis une source.
+
+Ouvrez un terminal et naviguez vers le répertoire racine du projet.
+
+Exécutez la commande suivante pour créer les tables de la base de données :
+
+python manage.py migrate
+Chargez les données de test en exécutant la commande suivante :
+
+python manage.py loaddata fixtures.json
+Exécutez le serveur de développement Django avec la commande :
+
+python manage.py runserver
+Accédez à l'application depuis votre navigateur en ouvrant l'URL http://127.0.0.1:8000/.
+
+Vous pouvez maintenant utiliser l'application en tant qu'emprunteur ou bibliothéquaire en suivant les options affichées.
