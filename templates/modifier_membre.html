@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifier un Membre</title>
+</head>
+<body>
+    <h1>Modifier un Membre</h1>
+    <p>Nom actuel : <span id="membreName"></span></p>
+
+   <form action="#" method="get">
+    <input type="text" placeholder="Nouveau nom" name="newName" id="newName" />
+    <input type="submit" class="btn" value="Confirmer" name="mybtn">
+    <input type="hidden" name="membre_name" id="membre_name" />
+</form>
+
+
+
+    {% if modifier_result == True %}
+    <p>Le membre a été modfier avec succé'.</p>
+    {% else  %}
+    <p>Erreur lors de la modification.</p>
+    {% endif %}
+
+    <script>
+        function getURLParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        const membreName = getURLParameter('membre_name');
+        if (membreName) {
+            document.getElementById('membreName').textContent = membreName;
+            document.getElementById('membre_name').value = document.getElementById('membreName').textContent;
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emprunter un Média</title>
+</head>
+<body>
+    <h1>Emprunter un Média</h1>
+    <p>Vous empruntez actuellement : <span id="mediaId"></span></p>
+
+    <form action="#" method="get">
+        <input type="text" value="" name="mytextbox" size="4" readonly id="mytextbox" />
+        <input type="submit" class="btn" value="Confirmer" name="mybtn">
+        <input type="hidden" name="user_name" id="user_name" />
+    </form>
+
+    {% if emprunt_result == True %}
+    <p>L'emprunt a été effectué avec succès.</p>
+{% else %}
+    <p>Erreur lors de l'emprunt.</p>
+{% endif %}
+
+    <script>
+        function getURLParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        const mediaId = getURLParameter('media_id');
+        const user_name = getURLParameter('user_name');
+
+        if (mediaId) {
+            document.getElementById('mediaId').textContent = mediaId;
+            document.getElementById('mytextbox').value = mediaId;
+            document.getElementById('user_name').value = user_name;
+
+        }
+    </script>
+</body>
+</html>

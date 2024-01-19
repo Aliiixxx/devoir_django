@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil des Bibliothécaires</title>
+</head>
+<body>
+    <h1>Bienvenue dans l'interface des Bibliothécaires</h1>
+
+    <p>Ceci est la page d'accueil réservée aux bibliothécaires.</p>
+
+<h2>Médias disponibles :</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom du Média</th>
+                <th>Disponibilité</th>
+                <th>Type</th>
+                <th>Date de l'emprunt</th>
+                <th>Emprunteur</th>
+                <th>infos supp.</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for media in medias_disponibles %}
+            <tr>
+                <td>{{ media.name }}</td>
+                <td>
+                    {% if media.disponible %}
+                        Disponible
+                    {% else %}
+                        Indisponible
+                    {% endif %}
+                </td>
+                <td>{{ media.class_name }}</td>
+                <td>{{ media.dateEmprunt }}</td>
+                <td>{{ media.emprunteur }}</td>
+                <td>{{ media.infos_supp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'ajouter_media' %}">Ajouter un média</a>
+
+    <h2>Membres:</h2>
+    <table>
+    <thead>
+        <tr>
+            <th>Nom du Membre</th>
+            <th>Emprunt</th>
+            <th>Bibliothèque</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for membre in liste_utilisateurs %}
+        <tr>
+            <td>{{ membre.name.name }}</td>
+            <td>{{ membre.name.listmedia }}</td>
+            <td>{{ membre.name.bibliothèque.name}}</td>
+            <td><a href="{% url 'modifier_membre' %}?membre_name={{ membre.name.name }}">Modifier</a></td>
+            <td>
+                <form action="{% url 'supprimer_membre' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="membre_name" value="{{ membre.name.name }}">
+                    <button type="submit">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+    <a href="{% url 'ajouter_membre' %}">Ajouter un membre</a>
+
+
+</body>
+</html>

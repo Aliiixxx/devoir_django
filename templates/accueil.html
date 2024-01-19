@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+</head>
+<body>
+    <h1>Accueil</h1>
+    <p>Choisissez une option :</p>
+    <ul>
+        <li><a href="{% url 'index_bibliothecaire' %}">Aller à la page des bibliothécaires</a></li>
+        <li>
+            <form method="post" action="">
+                {% csrf_token %}
+                <label for="membre_name">Nom de l'emprunteur :</label>
+                <input type="text" id="membre_name" name="membre_name" required>
+                <input type="submit" value="Vérifier l'emprunteur">
+            </form>
+            {% if user_exist %}
+                <p style="color: red;">L'utilisateur n'existe pas.</p>
+            {% endif %}
+        </li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un Média</title>
+</head>
+<body>
+    <h1>Ajouter un Média</h1>
+    <p>Utilisez ce formulaire pour ajouter un nouveau média à la collection.</p>
+
+    <form method="post" action="{% url 'ajouter_media' %}">
+        {% csrf_token %}
+        <label for="nom_media">Nom du Média:</label>
+        <input type="text" id="nom_media" name="nom_media" required>
+        <br>
+        <label for="type_media">Type de Média:</label>
+        <select id="type_media" name="type_media" required>
+            <option value="livre">Livre</option>
+            <option value="dvd">DVD</option>
+            <option value="cd">CD</option>
+            <option value="jeu_de_plateau">Jeu de Plateau</option>
+        </select>
+        <br>
+
+        <div id="infos_createur_field">
+            <label for="infos_createur">Auteur:</label>
+            <input type="text" id="infos_createur" name="infos_createur" required>
+            <br>
+        </div>
+
+        <input type="submit" value="Ajouter Média">
+    </form>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+    <h2>Médias Disponibles</h2>
+    <ul>
+        {% for media in medias_disponibles %}
+            <li>{{ media.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        // Fonction pour mettre à jour le label en fonction de la sélection
+        document.getElementById('type_media').addEventListener('change', function () {
+            var selectedValue = this.value;
+            var label = document.querySelector('label[for="infos_createur"]');
+            var input = document.getElementById('infos_createur');
+
+            switch (selectedValue) {
+                case 'livre':
+                    label.textContent = 'Auteur:';
+                    break;
+                case 'dvd':
+                    label.textContent = 'Réalisateur:';
+                    break;
+                case 'cd':
+                    label.textContent = 'Artiste:';
+                    break;
+                case 'jeu_de_plateau':
+                    label.textContent = 'Créateur:';
+                    break;
+                default:
+                    label.textContent = 'Infos Créateur:';
+            }
+        });
+    </script>
+</body>
+</html>
