@@ -75,12 +75,10 @@ class jeuDePlateau(_item):
         super().__init__(name)
         self.createur = createur
 
-class Utilisateur(models.Model):
-    name = models.CharField(max_length=255)
-    bibliothèque = models.ForeignKey('Bibliothèque', on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.name
+class Utilisateur():
+    def __init__(self,name,bibliothèque=None):
+        self.bibliothèque=bibliothèque
+        self.name = name
 class Emprunteur(Utilisateur):
     listEmprunteur = []
 
